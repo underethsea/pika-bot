@@ -1,0 +1,23 @@
+{
+  "name": "pika-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "pika.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "cross-fetch": "^3.1.5",
+  "discord.js": "^13.6.0",
+  "dotenv": "^16.0.0",
+  "ethers": "^5.6.0",
+  "twit": "^2.2.11",
+  "dependencies": {
+    "cross-fetch": "^3.1.5",
+    "discord.js": "^13.8.0",
+    "dotenv": "^16.0.1",
+    "ethers": "^5.6.9"
+  }
+}
