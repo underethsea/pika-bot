@@ -1,5 +1,5 @@
 # pika-bot
 # 
-# .env add discord bot key
-# npm install
-# node pika.js
+ .env add discord bot key
+ npm install
+ node pika.js
