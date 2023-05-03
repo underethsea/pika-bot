@@ -3,11 +3,11 @@ import ethers from "ethers"
 
 const FILTERS = {
   NEWPOSITION: {
-    address: CONTRACT.PERPV2.ADDRESS,
+    address: CONTRACT.PERPV3.ADDRESS,
     topics: [EVENTS.NEWPOSITION.TOPIC]
   },
   CLOSEPOSITION: {
-    address: CONTRACT.PERPV2.ADDRESS,
+    address: CONTRACT.PERPV3.ADDRESS,
     topics: [EVENTS.CLOSEPOSITION.TOPIC]
   }
 }

@@ -54,22 +54,23 @@ async function botGo() {
         console.log("Ready!");
     });
 
-    // perp v2 close position event listening and alert
+    // perp v3 close position event listening and alert
     PROVIDER.OPTIMISM.on(FILTERS.CLOSEPOSITION, (closePositionEvent) => {
         try {
             ProcessClosePosition(closePositionEvent).then((result) => {
                 if (result) {
                     console.log(result)
                     const testingChannel = client.channels.cache.get(botTestChannelId);
-                    testingChannel.send({ embeds: [result.closePositionEmbed] });
-                    sendTweet(result.tweet);
+                    // testingChannel.send({ embeds: [result.closePositionEmbed] });
+                    // sendTweet(result.tweet);
+                    testingChannel.send(result.discordTest)
                 }
             });
         } catch (error) {
             console.log(error);
         }
     });
-        // perp v2 open position event listening and alert
+        // perp v3 open position event listening and alert
 
     PROVIDER.OPTIMISM.on(FILTERS.NEWPOSITION, (newPositionEvent) => {
         try {
@@ -77,8 +78,9 @@ async function botGo() {
                 if (result) {
                     console.log(result)
                     const testingChannel = client.channels.cache.get(botTestChannelId);
-                    testingChannel.send({ embeds: [result.newPositionEmbed] });
-                    sendTweet(result.tweet);
+                    // testingChannel.send({ embeds: [result.newPositionEmbed] });
+                    testingChannel.send(result.discordTest)
+                    // sendTweet(result.tweet);
                 }
             });
         } catch (error) {
@@ -86,7 +88,7 @@ async function botGo() {
         }
     });
 
-
+console.log("listening for events")
     client.login(process.env.BOT_KEY);
 }
 
