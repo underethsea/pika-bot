@@ -76,7 +76,7 @@ async function botGo() {
         try {
             ProcessNewPosition(newPositionEvent).then((result) => {
                 if (result) {
-                    console.log(result)
+                    // console.log(result)
                     const testingChannel = client.channels.cache.get(botTestChannelId);
                     // testingChannel.send({ embeds: [result.newPositionEmbed] });
                     testingChannel.send(result.discordTest)

@@ -6,7 +6,7 @@ import { CONTRACT, PRODUCTS } from "./constants/constants.js";
 import ethers from "ethers";
 
 // threshold in USD for alerts for opening size (margin * leverage)
-const openAlertThreshold = 500;
+const openAlertThreshold = 30000;
 
 // threshold in USD for alerts for closing position pnl
 const closeAlertThreshold = 100
@@ -87,16 +87,16 @@ async function ProcessNewPosition(eventData) {
         //         ")"
         //     );
         let tweet = ""
-        console.log(newPosition.user  + " open " + PRODUCTS[newPosition.productId].name + " " + isLong + " margin of " + newPosition.margin + " leverage " + newPosition.leverage )
-        let discordTest = newPosition.user  + " open " + PRODUCTS[newPosition.productId].name + " " + isLong + " margin of " + newPosition.margin + " leverage " + newPosition.leverage
+        console.log(newPosition.user  + " open " + PRODUCTS[newPosition.productId].name + " " + isLong + " margin of " + newPosition.margin + " leverage " +  parseInt(newPosition.leverage) + "x")
+        let discordTest = newPosition.user  + " open " + PRODUCTS[newPosition.productId].name + " " + isLong + " margin of " + newPosition.margin + " leverage " + parseInt(newPosition.leverage) + "x"
         return { newPositionEmbed: newPositionEmbed, tweet: tweet, discordTest: discordTest };
     } else {
-        console.log(newPosition.user + " open " + PRODUCTS[newPosition.productId].name +  " " + isLong + " margin of " + newPosition.margin + " leverage " + newPosition.leverage)
+        console.log(newPosition.user + " open " + PRODUCTS[newPosition.productId].name +  " " + isLong + " margin of " + newPosition.margin + " leverage " +  parseInt(newPosition.leverage) + "x")
 
         console.log(
             
-            "position not meeting threshold for alert, amt ",
-            newPosition.margin
+            "position not meeting threshold for alert, size ",
+            newPosition.margin * newPosition * leverage
         );
         return null;
     }
@@ -174,7 +174,7 @@ async function ProcessClosePosition(eventData) {
 
         console.log(
             "position not meeting threshold for alert, amt ",
-            closePosition.margin
+            closePosition.pnl
         );
         return null;
     }
