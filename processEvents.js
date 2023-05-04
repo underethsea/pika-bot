@@ -50,19 +50,20 @@ async function ProcessNewPosition(eventData) {
     };
    
     // console.log("-----new position\n", newPosition)
+    let isLong = "SHORT"
+    // let liquidationPrice = newPosition.price / 1e8 - (newPosition.price / 1e8 * (.8 / (newPosition.leverage / 1e8)))
+
+    if (newPosition.isLong) {
+        isLong = "LONG";
+        // liquidationPrice = newPosition.price / 1e8 - (newPosition.price / 1e8 * (.8 / (newPosition.leverage / 1e8)))
+    }
+
 
 
     if (newPosition.margin * newPosition.leverage > openAlertThreshold) {
         //  // LONG entryPrice−entryPrice∗liquidationThreshold/leverage
         // ​ // SHORT entryPrice+entryPrice∗liquidationThreshold/leverage
-        let isLong = "SHORT"
-        // let liquidationPrice = newPosition.price / 1e8 - (newPosition.price / 1e8 * (.8 / (newPosition.leverage / 1e8)))
-
-        if (newPosition.isLong) {
-            isLong = "LONG";
-            // liquidationPrice = newPosition.price / 1e8 - (newPosition.price / 1e8 * (.8 / (newPosition.leverage / 1e8)))
-        }
-
+     
         let newPositionEmbed = ""
         // const newPositionEmbed = new MessageEmbed()
         //     .setColor("#fbe64d")
@@ -135,13 +136,11 @@ async function ProcessClosePosition(eventData) {
    
     let liquidatedText = closePosition.wasLiquidated ? " liquidated " : " closed "
 
+  
     // console.log("-----decoded\n", decoded)
     // console.log("-----close position\n", closePosition)
     if (closePosition.pnl > closeAlertThreshold) {
-        let title = "CLOSED"
-        if (closePosition.wasLiquidated === 'true') {
-            title = 'LIQUIDATED'
-        }
+        
 
         let closePositionEmbed = ""
         // const closePositionEmbed = new MessageEmbed()
